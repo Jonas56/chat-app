@@ -16,7 +16,10 @@ model User {
   username    String @unique
   email       String @unique
   password    String
+  hashRtoken  String? @default("")
   avatar      String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @default(now())
+
+  @@map("users")
 }
