@@ -5,6 +5,7 @@ import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
 import { AtGuard } from './common/guards';
 import { APP_GUARD } from '@nestjs/core';
+import { AppGateway } from './app.gateway';
 
 @Module({
   controllers: [],
@@ -13,6 +14,7 @@ import { APP_GUARD } from '@nestjs/core';
       provide: APP_GUARD,
       useClass: AtGuard,
     },
+    AppGateway,
   ],
   imports: [
     UsersModule,
