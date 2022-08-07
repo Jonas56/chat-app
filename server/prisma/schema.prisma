@@ -18,8 +18,32 @@ model User {
   password    String
   hashRtoken  String? @default("")
   avatar      String
+  conversations Conversation[]
   createdAt   DateTime @default(now())
   updatedAt   DateTime @default(now())
 
   @@map("users")
+}
+
+model Chat {
+  id          Int @id @default(autoincrement())
+  name        String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now())
+  messages    String[]
+  conversations Conversation[]
+
+  @@map("chats")
+}
+
+model Conversation {
+  id          Int @id @default(autoincrement())
+  user        User @relation(fields: [userId], references: [id])
+  chat        Chat @relation(fields: [chatId], references: [id])
+  userId      Int
+  chatId      Int
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now())
+
+  @@map("conversations")
 }

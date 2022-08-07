@@ -7,7 +7,7 @@ import {
 import { PrismaService } from 'src/prisma/prisma.service';
 import { AuthDto, CreateUserDto } from './dto';
 import * as bcrypt from 'bcrypt';
-import { Tokens } from './types';
+import { Tokens, UserAuthenticated } from './types';
 import { JwtService } from '@nestjs/jwt';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime';
 
@@ -18,7 +18,7 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
-  async signup(dto: CreateUserDto): Promise<Tokens> {
+  async signup(dto: CreateUserDto): Promise<UserAuthenticated> {
     const salt = await bcrypt.genSalt();
     const passwordHash = await bcrypt.hash(dto.password, salt);
 
@@ -30,11 +30,18 @@ export class AuthService {
           hashRtoken: undefined,
         },
       });
+
+      delete user.password,
+        delete user.hashRtoken,
+        delete user.avatar,
+        delete user.createdAt,
+        delete user.updatedAt;
+
       const tokens = await this.issueTokens(user.id, user.email);
 
       this.updateHashRefreshToken(user.id, tokens.refreshToken);
 
-      return tokens;
+      return { user, ...tokens };
     } catch (e) {
       if (e instanceof PrismaClientKnownRequestError) {
         throw new HttpException('User already exists', HttpStatus.BAD_REQUEST);
@@ -51,20 +58,27 @@ export class AuthService {
     });
   }
 
-  async signin(authDto: AuthDto): Promise<Tokens> {
+  async signin(authDto: AuthDto): Promise<UserAuthenticated> {
     const user = await this.prismaService.user.findUnique({
       where: { email: authDto.email },
     });
     if (!user) {
-      throw new ForbiddenException('Access Denied');
+      throw new ForbiddenException('Wrong Credentials!');
     }
     const passwordValid = await bcrypt.compare(authDto.password, user.password);
     if (!passwordValid) {
-      throw new ForbiddenException('Access Denied');
+      throw new ForbiddenException('Wrong Credentials!');
     }
+
+    delete user.password,
+      delete user.hashRtoken,
+      delete user.avatar,
+      delete user.createdAt,
+      delete user.updatedAt;
+
     const tokens = await this.issueTokens(user.id, user.email);
     await this.updateHashRefreshToken(user.id, tokens.refreshToken);
-    return tokens;
+    return { user, ...tokens };
   }
 
   async logout(userId: number) {

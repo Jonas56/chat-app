@@ -6,6 +6,7 @@ import { ConfigModule } from '@nestjs/config';
 import { AtGuard } from './common/guards';
 import { APP_GUARD } from '@nestjs/core';
 import { AppGateway } from './app.gateway';
+import { ChatModule } from './chat/chat.module';
 
 @Module({
   controllers: [],
@@ -21,6 +22,7 @@ import { AppGateway } from './app.gateway';
     PrismaModule,
     AuthModule,
     ConfigModule.forRoot({ isGlobal: true }),
+    ChatModule,
   ],
 })
 export class AppModule {}
