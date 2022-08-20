@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { BsChatText } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
-import useFormInputs from "../app/hooks";
+import { useFormInputs } from "../app/hooks";
 import { login } from "../app/redux/features/authSlice";
 import { RootState } from "../app/redux/store";
 import { FormInput, Spinner, Toast } from "../components/common";

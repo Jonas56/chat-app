@@ -3,7 +3,7 @@ import { User } from "./types";
 import { IoCallOutline } from "react-icons/io5";
 import { BsCameraVideo } from "react-icons/bs";
 
-export default function Header({ user }: { user: User }) {
+export default function Header({ user }: { user: User | null }) {
   return (
     <div className="flex sm:items-center justify-between py-3 border-b-2 border-gray-200 bg-white px-4 rounded-full">
       <div className="relative flex items-center space-x-4">
@@ -14,14 +14,14 @@ export default function Header({ user }: { user: User }) {
             </svg>
           </span>
           <img
-            src={user.avatar}
+            src={user?.avatar}
             alt=""
             className="w-10 sm:w-16 h-10 sm:h-16 rounded-full"
           />
         </div>
         <div className="flex flex-col leading-tight">
           <div className="text-2xl mt-1 flex items-center">
-            <span className="text-gray-700 mr-3">{user.name}</span>
+            <span className="text-gray-700 mr-3">{user?.name}</span>
           </div>
           <span className="md:text-lg text-gray-600">Online</span>
         </div>

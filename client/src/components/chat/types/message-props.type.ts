@@ -1,7 +1,7 @@
 import { User } from "./";
 
 export interface MessageProps {
-  message: string;
-  user: User;
+  message: string | null;
+  user: User | null;
   reply?: boolean;
 }

@@ -7,7 +7,7 @@ import {
 import { BsChatText } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 import { CreateUserRequest } from "../app/api/types";
-import useFormInputs from "../app/hooks";
+import { useFormInputs } from "../app/hooks";
 import { register } from "../app/redux/features/authSlice";
 import { RootState } from "../app/redux/store";
 import { FormInput, Spinner, Toast, Alert } from "../components/common";

@@ -16,7 +16,7 @@ export const httpRegisterUser = async (
 ): Promise<JSON> => {
   credentials.avatar = `https://avatars.dicebear.com/api/identicon/${credentials.username}.svg`;
   const response = await axios.post(BASE_URL + "/signup", credentials);
-  if (response.status === 200) {
+  if (response.status === 201) {
     localStorage.setItem("userChatApp", JSON.stringify(response.data));
   }
   return response.data;

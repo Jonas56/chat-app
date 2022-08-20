@@ -14,7 +14,7 @@ export default function Message(props: MessageProps) {
           </div>
         </div>
         <img
-          src={user.avatar}
+          src={user?.avatar}
           alt="My profile"
           className="w-6 h-6 rounded-full order-2"
         />
@@ -34,7 +34,7 @@ export default function Message(props: MessageProps) {
           </div>
         </div>
         <img
-          src={user.avatar}
+          src={user?.avatar}
           alt="My profile"
           className="w-6 h-6 rounded-full order-1"
         />

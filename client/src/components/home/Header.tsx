@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 export function Header() {
   const [theme, setTheme] = useState("");
@@ -70,12 +71,12 @@ export function Header() {
                 </svg>
               )}
             </button>
-            <a
-              href="#"
+            <Link
+              to="/login"
               className="text-white bg-primary-700 hover:bg-gray-200 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800"
             >
               Log in
-            </a>
+            </Link>
             <button
               data-collapse-toggle="mobile-menu-2"
               type="button"
