@@ -1,0 +1,24 @@
+{
+  "name": "chat-app",
+  "version": "1.0.0",
+  "description": "Real time chat app. ",
+  "main": "index.js",
+  "scripts": {
+    "test": "test:app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Jonas56/chat-app.git"
+  },
+  "keywords": [
+    "chat",
+    "nestjs",
+    "react"
+  ],
+  "author": "Jonas56",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Jonas56/chat-app/issues"
+  },
+  "homepage": "https://github.com/Jonas56/chat-app#readme"
+}
