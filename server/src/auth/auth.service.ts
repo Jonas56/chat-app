@@ -33,7 +33,6 @@ export class AuthService {
 
       delete user.password,
         delete user.hashRtoken,
-        delete user.avatar,
         delete user.createdAt,
         delete user.updatedAt;
 
@@ -72,7 +71,6 @@ export class AuthService {
 
     delete user.password,
       delete user.hashRtoken,
-      delete user.avatar,
       delete user.createdAt,
       delete user.updatedAt;
 
