@@ -9,14 +9,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { CreateUserRequest } from "../app/api/types";
 import { useFormInputs } from "../app/hooks";
 import { register } from "../app/redux/features/authSlice";
-import { RootState } from "../app/redux/store";
+import { AppDispatch, RootState } from "../app/redux/store";
 import { FormInput, Spinner, Toast, Alert } from "../components/common";
 import { useNavigate, Link } from "react-router-dom";
 
 export default function SignUp() {
   const [inputs, handleInputChange] = useFormInputs({});
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null as any);
@@ -28,7 +28,7 @@ export default function SignUp() {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    dispatch(register(inputs as CreateUserRequest) as any);
+    dispatch(register(inputs as CreateUserRequest));
   };
 
   const { isLoading, message, status, errorMessage, user } = useSelector(
@@ -65,12 +65,14 @@ export default function SignUp() {
 
   return (
     <section className="bg-gray-50 dark:bg-gray-900">
-      <Toast
-        message={toast.message}
-        type={toast.type}
-        show={toast.show}
-        handleShow={setToast}
-      />
+      {toast.show && (
+        <Toast
+          message={toast.message}
+          type={toast.type}
+          show={toast.show}
+          handleShow={setToast}
+        />
+      )}
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         {loading && <Spinner />}
         <a
