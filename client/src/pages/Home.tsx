@@ -6,11 +6,11 @@ export const Home = () => {
     <>
       <Header />
       <Hero />
-      <Content />
-      <Team />
+      {/* <Content /> */}
+      {/* <Team />
       <NewsLetter />
       <FAQ />
-      <Footer />
+      <Footer /> */}
     </>
   );
 };
