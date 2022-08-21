@@ -3,7 +3,7 @@ import { BsChatText } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 import { useFormInputs } from "../app/hooks";
 import { login } from "../app/redux/features/authSlice";
-import { RootState } from "../app/redux/store";
+import { AppDispatch, RootState } from "../app/redux/store";
 import { FormInput, Spinner, Toast } from "../components/common";
 import { useNavigate, Link } from "react-router-dom";
 
@@ -12,23 +12,23 @@ export default function Login() {
     email: "",
     password: "",
   });
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [toast, setToast] = useState({
-    show: false,
     message: "",
     type: "",
   });
+  const [showToast, setShowToast] = useState(false);
 
   const { isLoading, message, status, user } = useSelector(
     (state: RootState) => state.auth
   );
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    dispatch(login({ ...inputs }) as any);
+    dispatch(login({ ...inputs }));
   };
 
   useEffect(() => {
@@ -38,22 +38,17 @@ export default function Login() {
       setLoading(false);
     }
     if (status === "fulfilled" || user) {
-      setToast({
-        show: true,
-        message: "" + message,
-        type: "success",
-      });
       navigate("/");
     } else if (status === "rejected") {
+      setShowToast(true);
       setToast({
-        show: true,
         message: "" + message,
         type: "warning",
       });
     }
     setTimeout(() => {
+      setShowToast(false);
       setToast({
-        show: false,
         message: "",
         type: "",
       });
@@ -62,12 +57,15 @@ export default function Login() {
 
   return (
     <section className="bg-gray-50 dark:bg-gray-900">
-      <Toast
-        message={toast.message}
-        type={toast.type}
-        show={toast.show}
-        handleShow={setToast}
-      />
+      {showToast && (
+        <Toast
+          message={toast.message}
+          type={toast.type}
+          show={showToast}
+          handleShow={setToast}
+        />
+      )}
+
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         {loading && <Spinner />}
         <a
@@ -83,8 +81,8 @@ export default function Login() {
             </h1>
             <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
               <FormInput
-                label="Email"
-                type="email"
+                label="Email or username"
+                type="text"
                 name="email"
                 id="email"
                 placeholder="jonas@tesla.com"
@@ -108,7 +106,6 @@ export default function Login() {
                       aria-describedby="remember"
                       type="checkbox"
                       className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
-                      required
                     />
                   </div>
                   <div className="ml-3 text-sm">

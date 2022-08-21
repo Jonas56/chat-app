@@ -58,8 +58,10 @@ export class AuthService {
   }
 
   async signin(authDto: AuthDto): Promise<UserAuthenticated> {
-    const user = await this.prismaService.user.findUnique({
-      where: { email: authDto.email },
+    const user = await this.prismaService.user.findFirst({
+      where: {
+        OR: [{ email: authDto.email }, { username: authDto.email }],
+      },
     });
     if (!user) {
       throw new ForbiddenException('Wrong Credentials!');
