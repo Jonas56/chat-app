@@ -1,13 +1,17 @@
-import { Discussion } from "./types";
+import React, { useState } from "react";
 import moment from "moment";
 
-export default function DiscussionComponent({
-  discussion,
-}: {
-  discussion: any;
-}) {
+export function DiscussionCard({ discussion }: { discussion: any }) {
+  const [activeDiscussion, setActiveDiscussion] = useState<any>({});
+
   return (
-    <div className="entry cursor-pointer transform hover:scale-95 duration-100 transition-transform bg-white mb-4 rounded-full p-4 flex shadow-md">
+    <div
+      className="entry cursor-pointer transform hover:scale-95 duration-100 transition-transform bg-white mb-4 rounded-full p-4 flex shadow-md"
+      onClick={() => {
+        console.log(discussion);
+        setActiveDiscussion(discussion);
+      }}
+    >
       <div className="flex-2">
         <div className="w-12 h-12 relative">
           <img

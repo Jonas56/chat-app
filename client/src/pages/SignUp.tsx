@@ -13,7 +13,7 @@ import { AppDispatch, RootState } from "../app/redux/store";
 import { FormInput, Spinner, Toast, Alert } from "../components/common";
 import { useNavigate, Link } from "react-router-dom";
 
-export default function SignUp() {
+export function SignUp() {
   const [inputs, handleInputChange] = useFormInputs({});
 
   const dispatch = useDispatch<AppDispatch>();

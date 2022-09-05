@@ -6,3 +6,8 @@ export interface AuthSliceState {
   status: "idle" | "fulfilled" | "rejected";
   errorMessage: string | null;
 }
+
+export interface DiscussionSliceState {
+  activeDiscussion: any;
+  discussions: any;
+}

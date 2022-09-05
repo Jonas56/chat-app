@@ -1,5 +1,5 @@
-import DiscussionComponent from "./Discussion";
-import { Discussion } from "./types";
+import React from "react";
+import { DiscussionCard } from "./Discussion";
 
 // const discusions: Discussion[] = [
 //   {
@@ -40,7 +40,7 @@ import { Discussion } from "./types";
 //   },
 // ];
 
-export default function SideBar({ discussions }: any) {
+export function SideBar({ discussions }: any) {
   return (
     <div className="sidebar hidden lg:flex w-1/3 flex-2 flex-col p:2 sm:p-6">
       <div className="hidden lg:block heading flex-2">
@@ -55,7 +55,7 @@ export default function SideBar({ discussions }: any) {
       </div>
       <div className="flex-1 h-full overflow-auto px-2">
         {discussions.map((discussion: any) => (
-          <DiscussionComponent key={discussion.id} discussion={discussion} />
+          <DiscussionCard key={discussion.id} discussion={discussion} />
         ))}
       </div>
     </div>

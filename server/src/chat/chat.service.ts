@@ -15,7 +15,16 @@ export class ChatService {
         },
       },
       include: {
-        conversations: true,
+        conversations: {
+          select: {
+            conversation: {
+              select: {
+                id: true,
+                messages: true,
+              },
+            },
+          },
+        },
       },
     });
     const connetedUsers = users.map((u) => {

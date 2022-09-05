@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { useNavigate } from "react-router-dom";
 import { httpLoginUser, httpRegisterUser } from "../../api/authService";
 import { CreateUserRequest } from "../../api/types";
 import { AuthSliceState } from "./types";
@@ -41,8 +40,6 @@ export const login = createAsyncThunk(
 
 export const logout = createAsyncThunk("auth/logout", () => {
   localStorage.removeItem("userChatApp");
-  const navigate = useNavigate();
-  navigate("/login?token_expired=true");
 });
 
 const authSlice = createSlice({

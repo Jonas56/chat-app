@@ -40,7 +40,7 @@ export class ChatGateway
     try {
       const token = client.handshake.headers.authorization.split(' ')[1];
       const payload = <any>jwt.verify(token, process.env.AT_SECRET);
-      const user: User = await this.usersSerivce.findOne(payload.sub._id);
+      const user: User = await this.usersSerivce.findOne(payload.sub);
       client.data.user = user;
       // get user conversations
       const users = await this.chatService.getConversationsForUser(user);

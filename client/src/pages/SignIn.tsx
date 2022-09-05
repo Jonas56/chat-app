@@ -7,7 +7,7 @@ import { AppDispatch, RootState } from "../app/redux/store";
 import { FormInput, Spinner, Toast } from "../components/common";
 import { useNavigate, Link } from "react-router-dom";
 
-export default function Login() {
+export function SignIn() {
   const [inputs, handleInputChange] = useFormInputs({
     email: "",
     password: "",

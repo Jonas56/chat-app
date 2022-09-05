@@ -7,7 +7,7 @@ import { IoSettingsOutline } from "react-icons/io5";
 import { FiUsers } from "react-icons/fi";
 import { BsChatDots } from "react-icons/bs";
 
-export default function SideNav() {
+export  function SideNav() {
   return (
     <aside
       className="bg-indigo-600 py:2 sm:py-6 p-3 hidden sm:block"

@@ -1,7 +1,7 @@
 import React from "react";
 import { MessageProps } from "./types";
 
-export default function Message(props: MessageProps) {
+export function Message(props: MessageProps) {
   const { reply, message, user } = props;
   return reply ? (
     <div className="chat-message flex flex-col space-x-2 items-end justify-end">

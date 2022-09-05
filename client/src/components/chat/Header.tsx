@@ -3,7 +3,7 @@ import { User } from "./types";
 import { IoCallOutline } from "react-icons/io5";
 import { BsCameraVideo } from "react-icons/bs";
 
-export default function Header({ user }: { user: User | null }) {
+export function ChatHeader({ user }: { user: User | null }) {
   return (
     <div className="flex sm:items-center justify-between py-3 border-b-2 border-gray-200 bg-white px-4 rounded-full">
       <div className="relative flex items-center space-x-4">

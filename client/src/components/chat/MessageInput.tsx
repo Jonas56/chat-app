@@ -4,7 +4,7 @@ import { BsEmojiSmile } from "react-icons/bs";
 import { IoSend } from "react-icons/io5";
 import { ImAttachment } from "react-icons/im";
 
-export default function MessageInput() {
+export function MessageInput() {
   return (
     <div className="border-t-2 border-gray-200 p-4 mb-2">
       <div className="relative flex rounded-full">
