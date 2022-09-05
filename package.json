@@ -4,6 +4,8 @@
   "description": "Real time chat app. ",
   "main": "index.js",
   "scripts": {
+    "install": "npm install --prefix client && npm install --prefix server",
+    "start-dev": "npm run start:dev --prefix server && npm start --prefix client",
     "test": "test:app"
   },
   "repository": {
