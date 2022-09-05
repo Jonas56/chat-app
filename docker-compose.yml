@@ -1,4 +1,4 @@
-version: '3.1'
+version: "3.1"
 
 services:
   db:
@@ -6,7 +6,7 @@ services:
     volumes:
       - data:/var/lib/postgresql/data
     ports:
-      - '5432:5432'
+      - "5432:5432"
     environment:
       - POSTGRES_USER=user
       - POSTGRES_PASSWORD=password
