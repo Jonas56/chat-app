@@ -1,7 +1,7 @@
 # Chat app
 
 <p align="center">
-    <img src="https://i.postimg.cc/bvvbqFZ9/chat-app.png" width="900">
+    <img src="https://i.postimg.cc/CLsQ8gM6/image.jpg" width="900">
 </p>
 
 ## Description
